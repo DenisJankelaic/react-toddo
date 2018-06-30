@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { FormView } from "./components/form-view";
 import { ListView } from "./components/list-view";
+import { ButtonsView } from "./components/button-view";
 
 import "./index.css";
 
@@ -9,7 +10,8 @@ class App extends React.Component {
 
     public state = {
         inputValue: "",
-        tasks: []
+        tasks: [],
+        backuparray: []
     };
 
     public Change = event => {
@@ -28,6 +30,7 @@ class App extends React.Component {
         newtasklist.push(newTask);
         this.setState({
             tasks: newtasklist,
+            backuparray: newtasklist,
             inputValue: ""
         });
     }
@@ -54,25 +57,52 @@ class App extends React.Component {
             tasks: tasks
         });
     }
+
+    public filterDone = () => {
+
+        const tasks = this.state.backuparray;
+        tasks = tasks.filter(x => (x.done === false));
+        this.setState({
+            tasks: tasks
+        });
+    }
+
+    public filterUndone = () => {
+
+        const tasks = this.state.backuparray;
+        tasks = tasks.filter(x => (x.done === true));
+        this.setState({
+            tasks: tasks
+        });
+    }
+
+    public refreshList = () => {
+        this.setState({
+            tasks: this.state.backuparray;
+        });
+    }
     public render(): JSX.Element {
         return (
             <div className="todolist">
-            <div className="wrapper">
-                <div className="title">
-                    To do list
+                <div className="wrapper">
+                    <div className="title">
+                        To do list
                 </div>
-                <div className="buttons">
-                <button>
-                    <img src="https://cdn3.iconfinder.com/data/icons/computer-network-icons/512/Trash_Bin-512.png" 
-                    alt="TrashCan" onClick={this.clearList}/></button>
+                    <div className="buttons">
+                        <ButtonsView
+                            clearList={this.clearList}
+                            filterDone={this.filterDone}
+                            filterUndone={this.filterUndone}
+                            refreshList={this.refreshList}
+                        />
                     </div>
-                <div className="input">
-                    <FormView
-                        Change={this.Change}
-                        inputValue={this.state.inputValue}
-                        Submit={this.Submit}
-                    />
-                </div>
+                    <div className="input">
+                        <FormView
+                            Change={this.Change}
+                            inputValue={this.state.inputValue}
+                            Submit={this.Submit}
+                        />
+                    </div>
 
                     <ListView
                         Click={this.Click}

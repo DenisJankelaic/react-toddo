@@ -5,9 +5,9 @@ export class FormView extends React.Component {
     public render(): JSX.Element {
         return (
             <div className="form">
-            <form onSubmit={(event) => this.props.Submit(event)}>
+            <form onSubmit={event => this.props.Submit(event)}>
                 <input
-                onChange={(event) => this.props.Change(event)}
+                onChange={event => this.props.Change(event)}
                 value={this.props.inputValue}
                 />
             </form>
