@@ -22,17 +22,24 @@ class App extends React.Component {
 
     public Submit = event => {
         event.preventDefault();
-        const newTask = {
-            value: this.state.inputValue,
-            done: false
-        };
-        const newtasklist = this.state.tasks;
-        newtasklist.push(newTask);
-        this.setState({
-            tasks: newtasklist,
-            backuparray: newtasklist,
-            inputValue: ""
-        });
+        if (this.state.inputValue !== "") {
+            const newTaskname = this.state.inputValue.charAt(0).toUpperCase() + this.state.inputValue.slice(1);
+            const newTask = {
+                value: newTaskname,
+                done: false
+            };
+            const newtasklist = this.state.tasks;
+            newtasklist.push(newTask);
+            this.setState({
+                tasks: newtasklist,
+                backuparray: newtasklist,
+                inputValue: ""
+            });
+        } else {
+            this.setState({
+                inputValue: ""
+            });
+        }
     }
 
     public Click = index => {
@@ -61,7 +68,7 @@ class App extends React.Component {
     public filterDone = () => {
 
         const tasks = this.state.backuparray;
-        tasks = tasks.filter(x => (x.done === false));
+        tasks = tasks.filter(x => (x.done === true));
         this.setState({
             tasks: tasks
         });
@@ -70,7 +77,7 @@ class App extends React.Component {
     public filterUndone = () => {
 
         const tasks = this.state.backuparray;
-        tasks = tasks.filter(x => (x.done === true));
+        tasks = tasks.filter(x => (x.done === false));
         this.setState({
             tasks: tasks
         });

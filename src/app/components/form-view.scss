@@ -1,9 +1,27 @@
-input{
-    width: 100%;
-    box-sizing: border-box;
-    border: 2px solid black;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    padding: 12px 20px 12px 40px;
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+.form{
+    form{
+        border: 2px solid black;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        height: 36px;
+        img{
+            width: 36px;
+        }
+        input{
+            width: 100%;
+            box-sizing: border-box;
+            border: none;
+            font-size: 16px;
+            background-color: white;
+            font-family: 'Indie Flower', cursive;
+            font-weight: bold;
+        }
+        input:focus {
+            outline-width: 0;cursor: url(http://www.rw-designer.com/cursor-view/59022.png) 4 12, auto;
+        }
+    }
+    
 }
