@@ -6,6 +6,11 @@
     flex: 1 0 auto;
     align-items: center;
     justify-content: space-between;
+    padding-left: 10px;
+    &:hover {
+        background-color: #bdffff;
+        border-radius: 5px;
+    }
     .task-text {
         text-align: center;
         font-family: 'Indie Flower', cursive;
@@ -16,20 +21,20 @@
         display: flex;
         padding: 10px;
         .button {
-            padding: 5px;
-            button {
-                background-color: transparent;
-                border: 2px solid black;
-                border-radius: 4px;
-                color: black;
-                padding: 7px 14px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                font-family: 'Indie Flower', cursive;
-                font-weight: bold;
+            &:hover {
+                background-color: skyblue;
+        border-radius: 4px;
+
+        width: 36px;
+        height: 36px;
             }
         }
+    }
+    img {
+        width: 36px;
+        height: 36px;
+        padding: 5px;
+        border: 2px solid black;
+        border-radius: 4px;
     }
 }

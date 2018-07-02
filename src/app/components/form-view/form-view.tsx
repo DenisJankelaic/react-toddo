@@ -18,7 +18,7 @@ export class FormView extends React.Component<Props> {
                         onChange={event => this.props.Change(event)}
                         value={this.props.inputValue}
                         placeholder="Write your task here!"
-                        maxLength="30"
+                        maxLength={30}
                     />
                 </form>
             </div>

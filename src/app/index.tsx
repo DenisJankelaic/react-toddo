@@ -13,9 +13,7 @@ interface State {
     backuparray: Task[];
 }
 
-interface Props {}
-
-class App extends React.Component<Props, State> {
+class App extends React.Component<{}, State> {
     public state: State = {
         inputValue: "",
         tasks: [],
@@ -32,17 +30,24 @@ class App extends React.Component<Props, State> {
         event.preventDefault();
         if (this.state.inputValue !== "") {
             const newTaskname = this.state.inputValue.charAt(0).toUpperCase() + this.state.inputValue.slice(1);
-            const newTask = {
-                value: newTaskname,
-                done: false
-            };
-            const newtasklist = this.state.tasks;
-            newtasklist.push(newTask);
-            this.setState({
-                tasks: newtasklist,
-                backuparray: newtasklist,
-                inputValue: ""
-            });
+            if (this.state.tasks.some(x => newTaskname === x.value)) {
+                this.setState({
+                    inputValue: ""
+                });
+            } else {
+                const newTask = {
+                    value: newTaskname,
+                    done: false
+                };
+                const newtasklist = this.state.tasks;
+                newtasklist.push(newTask);
+                this.setState({
+                    tasks: newtasklist,
+                    backuparray: newtasklist,
+                    inputValue: ""
+                });
+
+            }
         } else {
             this.setState({
                 inputValue: ""

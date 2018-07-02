@@ -14,14 +14,14 @@ interface Props {
 export class TaskView extends React.Component<Props> {
     public render(): JSX.Element {
         return (
-            <div className="task">
-                <div className="task-text" style={{textDecoration: this.props.singletask.done ? "line-through" :
+            <div className="task" onClick={() => this.props.Click(this.props.index)}>
+                <div className="task-text"
+                style={{textDecoration: this.props.singletask.done ? "line-through" :
                 "none"}}>
                 {this.props.singletask.value} </div>
                 <div className="task-button">
-                <div className="button"><button onClick={() => this.props.Click(this.props.index)}>
-                {this.props.singletask.done ? "Undo" : "Complete" }</button></div>
-                <div className="button"><button onClick={() => this.props.clickDelete(this.props.index)}>-</button></div>
+                <div className="button"><img src="https://www.freeiconspng.com/uploads/black-x-png-27.png"
+                onClick={() => this.props.clickDelete(this.props.index)}/></div>
                 </div>
             </div>
         );

@@ -1,20 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
 .form{
+    height: 60px;
+    width: 300px;
     form{
+        size: inherit;
         border: 2px solid black;
         border-radius: 4px;
         display: flex;
         flex-direction: row;
-        height: 36px;
+        height: 100%;
+        width: 100%;
+
         img{
-            width: 36px;
+            width: 20%;
         }
         input{
             width: 100%;
             box-sizing: border-box;
             border: none;
-            font-size: 16px;
+            font-size: 24px;
             background-color: white;
             font-family: 'Indie Flower', cursive;
             font-weight: bold;
