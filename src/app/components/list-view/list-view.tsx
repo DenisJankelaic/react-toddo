@@ -1,8 +1,15 @@
 import * as React from "react";
 
-import { TaskView } from "./task";
+import { TaskView } from "../task-view/task";
+import { Task } from "../task-view/task-interface";
 
-export class ListView extends React.Component {
+interface Props {
+    Click: (index: number) => void;
+    clickDelete: (index: number) => void;
+    tasks: Task[];
+}
+
+export class ListView extends React.Component<Props> {
 
     public render(): JSX.Element {
         return (

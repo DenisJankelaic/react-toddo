@@ -1,26 +1,34 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { FormView } from "./components/form-view";
-import { ListView } from "./components/list-view";
-import { ButtonsView } from "./components/button-view";
+import { FormView } from "./components/form-view/form-view";
+import { ListView } from "./components/list-view/list-view";
+import { ButtonsView } from "./components/button-view/button-view";
+import { Task } from "./components/task-view/task-interface";
 
 import "./index.css";
 
-class App extends React.Component {
+interface State {
+    inputValue: string;
+    tasks: Task[];
+    backuparray: Task[];
+}
 
-    public state = {
+interface Props {}
+
+class App extends React.Component<Props, State> {
+    public state: State = {
         inputValue: "",
         tasks: [],
         backuparray: []
     };
 
-    public Change = event => {
+    public Change = (event: any) => {
         this.setState({
             inputValue: event.target.value
         });
     }
 
-    public Submit = event => {
+    public Submit = (event: any) => {
         event.preventDefault();
         if (this.state.inputValue !== "") {
             const newTaskname = this.state.inputValue.charAt(0).toUpperCase() + this.state.inputValue.slice(1);
@@ -42,7 +50,7 @@ class App extends React.Component {
         }
     }
 
-    public Click = index => {
+    public Click = (index: number) => {
         const tasks = this.state.tasks;
         tasks[index].done = !tasks[index].done;
         this.setState({
@@ -50,7 +58,7 @@ class App extends React.Component {
         });
     }
 
-    public clickDelete = index => {
+    public clickDelete = (index: number) => {
         const tasks = this.state.tasks;
         tasks.splice(index, 1);
         this.setState({
@@ -66,8 +74,7 @@ class App extends React.Component {
     }
 
     public filterDone = () => {
-
-        const tasks = this.state.backuparray;
+        let tasks = this.state.backuparray;
         tasks = tasks.filter(x => (x.done === true));
         this.setState({
             tasks: tasks
@@ -75,8 +82,7 @@ class App extends React.Component {
     }
 
     public filterUndone = () => {
-
-        const tasks = this.state.backuparray;
+        let tasks = this.state.backuparray;
         tasks = tasks.filter(x => (x.done === false));
         this.setState({
             tasks: tasks
@@ -85,7 +91,7 @@ class App extends React.Component {
 
     public refreshList = () => {
         this.setState({
-            tasks: this.state.backuparray;
+            tasks: this.state.backuparray
         });
     }
     public render(): JSX.Element {
