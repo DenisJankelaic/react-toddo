@@ -14,8 +14,8 @@ interface Props {
 export class TaskView extends React.Component<Props> {
     public render(): JSX.Element {
         return (
-            <div className="task" onClick={() => this.props.Click(this.props.index)}>
-                <div className="task-text"
+            <div className="task" >
+                <div className="task-text" onClick={() => this.props.Click(this.props.index)}
                 style={{textDecoration: this.props.singletask.done ? "line-through" :
                 "none"}}>
                 {this.props.singletask.value} </div>
